@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <script src="resource/lib/onsenui/js/onsenui.min.js"></script>
+    <script src="resource/js/app.js"></script>
+    <script src="resource/js/controllers.js"></script>
+    <script src="resource/js/services.js"></script>
+    <script src="resource/js/user.js"></script>
+
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="resource/lib/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="resource/lib/onsenui/css/onsen-css-components.css">
+    <link rel="stylesheet" href="resource/css/style.css">
+</head>
+<body>
+    <ons-navigator id="myNavigator" page="splitter.html">
+    </ons-navigator>
+    
+    <template id="splitter.html">
+        <ons-page>
+            <ons-splitter id="mySplitter">
+            <ons-splitter-side page="" swipeable width="250px" collapse swipe-target-width="50px"></ons-splitter-side>
+            <ons-splitter-content page="tabbar.html">
+            </ons-splitter-content>
+        </ons-splitter>
+        </ons-page>
+    </template>
+    
+    <template id="tabbar.html">
+        <ons-page id="tabbarPage">
+            <ons-toolbar style="background:#bb2222">
+                <div class="left">
+                    <!-- Toolbar-button with different icons depending on the platform. -->
+                    <ons-toolbar-button component="button/menu">
+                        <ons-icon icon="ion-navicon, material:md-menu" size="32px, material:24px"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">Home Msg</div>
+                <!--
+                    <div class="right">
+                    <ons-if platform="ios other">
+                        <ons-toolbar-button component="button/new-task">New</ons-toolbar-button>
+                    </ons-if>
+                </div>
+                -->
+            </ons-toolbar>
+
+            <!--
+            <ons-if platform="android">
+                <ons-fab position="right bottom" component="button/new-task">
+                    <ons-icon icon="md-edit"></ons-icon>
+                </ons-fab>
+            </ons-if>
+            -->
+
+            <!-- Auto-positioned Tabbar: top on Android, bottom on iOS/other. -->
+            <ons-tabbar id="myTabbar" position="auto" >
+                <ons-tab style="background:#bb2222" page="pending_tasks.html" label="내주변 업체" active></ons-tab>
+                <ons-tab style="background:#bb2222" page="completed_tasks.html" label="내주변 관리사"></ons-tab>
+                <ons-tab id="tab_like_employee" style="background:#bb2222" page="user/like_employee.html" label="찜한 관리사"></ons-tab>
+            </ons-tabbar>
+        </ons-page>
+    </template>
+</body>
+</html>

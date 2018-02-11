@@ -1,0 +1,45 @@
+<ons-page id="joinPage">
+	<ons-toolbar style='background:#bb2222'>
+		<div class="left">
+			<ons-back-button>Back</ons-back-button>
+		</div>
+		<div class="center">회원가입</div>
+	</ons-toolbar>
+	
+	<article class="container">
+		<div class="page-header"></div>
+		<div class="col-md-12">
+			<form id="join_form" class="form-horizontal" method="post" action="/join">
+				<input type="hidden" name="login_type" value="1"/>
+				<input type="hidden" name="user_type" value="3"/>
+				<div class="form-group">
+					<label class="col-sm-3 control-label" for="email">이메일</label>
+					<div class="col-sm-6">
+						<input class="form-control" id="email" type="email" name="email" placeholder="이메일" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label" for="password">비밀번호</label>
+					<div class="col-sm-6">
+						<input class="form-control" id="password" type="password" name="password" placeholder="비밀번호" required="required">
+						<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label" for="re_password">비밀번호 확인</label>
+					<div class="col-sm-6">
+						<input class="form-control" id="re_password" type="password" name="re_password" placeholder="비밀번호 확인" required="required">
+						<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12 text-center">
+						<button class="btn btn-primary" type="submit">회원가입<i class="fa fa-check spaceLeft"></i></button>
+						<button class="btn btn-danger" type="button">가입취소<i class="fa fa-times spaceLeft"></i></button>
+					</div>
+				</div>
+			</form>
+			<hr>
+		</div>
+	</article>
+</ons-page>
