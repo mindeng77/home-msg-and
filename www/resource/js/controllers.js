@@ -16,7 +16,7 @@ myApp.controllers = {
 		// Set button functionality to push 'new_task.html' page.
 		Array.prototype.forEach.call(page.querySelectorAll('[component="button/new-task"]'), function(element) {
 			element.onclick = function() {
-				document.querySelector('#myNavigator').pushPage('html/new_task.html');
+				document.querySelector('#myNavigator').pushPage('new_task.html');
 			};
 
 			element.show && element.show(); // Fix ons-fab in Safari.
@@ -54,7 +54,7 @@ myApp.controllers = {
 
 		$(page).find('ons-list-item').click(function() {
 			if ($(this).attr('href') != null) {
-				$('#myNavigator')[0].pushPage(url_res + $(this).attr('href'), {
+				$('#myNavigator')[0].pushPage($(this).attr('href'), {
 					animation : 'slide'
 				});
 			} else if ($(this).attr('id') == 'menu_logout') {
@@ -180,7 +180,7 @@ myApp.controllers = {
 		myApp.services.user.loginInit(page);
 
 		$(page).find('#link_join').click(function() {
-			$('#myNavigator')[0].pushPage(url_res + $(this).attr('href'), {
+			$('#myNavigator')[0].pushPage($(this).attr('href'), {
 				animation : 'slide'
 			});
 			return false;

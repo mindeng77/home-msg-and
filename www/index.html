@@ -6,14 +6,19 @@
     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
     <script src="components/loader.js"></script>
     <script src="resource/lib/onsenui/js/onsenui.min.js"></script>
+    <script src="resource/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="resource/lib/jquery/jquery.form.min.js"></script>
+    <script src="resource/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="resource/js/app.js"></script>
     <script src="resource/js/controllers.js"></script>
     <script src="resource/js/services.js"></script>
+    <script src="resource/js/util.js"></script>
     <script src="resource/js/user.js"></script>
 
     <link rel="stylesheet" href="components/loader.css">
     <link rel="stylesheet" href="resource/lib/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="resource/lib/onsenui/css/onsen-css-components.css">
+    <link rel="stylesheet" href="resource/lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="resource/css/style.css">
 </head>
 <body>
@@ -23,7 +28,7 @@
     <template id="splitter.html">
         <ons-page>
             <ons-splitter id="mySplitter">
-            <ons-splitter-side page="" swipeable width="250px" collapse swipe-target-width="50px"></ons-splitter-side>
+            <ons-splitter-side page="menu.html" swipeable width="250px" collapse swipe-target-width="50px"></ons-splitter-side>
             <ons-splitter-content page="tabbar.html">
             </ons-splitter-content>
         </ons-splitter>
@@ -58,7 +63,7 @@
             -->
 
             <!-- Auto-positioned Tabbar: top on Android, bottom on iOS/other. -->
-            <ons-tabbar id="myTabbar" position="auto" >
+            <ons-tabbar id="myTabbar" position="auto">
                 <ons-tab style="background:#bb2222" page="pending_tasks.html" label="내주변 업체" active></ons-tab>
                 <ons-tab style="background:#bb2222" page="completed_tasks.html" label="내주변 관리사"></ons-tab>
                 <ons-tab id="tab_like_employee" style="background:#bb2222" page="user/like_employee.html" label="찜한 관리사"></ons-tab>

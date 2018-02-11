@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="com.example.helloworld" version="1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" id="com.obbasoft.homemsg" version="1.0.0">
   <name>홈마사지</name>
   <description>Made with Monaca (http://monaca.mobi)</description>
   <author/>

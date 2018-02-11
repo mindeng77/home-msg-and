@@ -71,7 +71,7 @@ myApp.services = {
       */
             // Add functionality to push 'details_task.html' page with the current element as a parameter.
             taskItem.querySelector('.center').onclick = function() {
-                document.querySelector('#myNavigator').pushPage(url_res+'html/shop/shop_detail.html', {
+                document.querySelector('#myNavigator').pushPage('shop/shop_detail.html', {
                     animation: 'lift',
                     data: {
                         element: taskItem

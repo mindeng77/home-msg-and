@@ -25,11 +25,26 @@ document.addEventListener('init', function(event) {
 
 ons.ready(function() {
     console.log("Onsen UI is ready!");
+    var appNavigator = document.querySelector('#myNavigator');
     ons.disableDeviceBackButtonHandler();
             
     // Use Cordova handler
-    window.document.addEventListener('backbutton', function() {
+    document.addEventListener('backbutton', function(event) {
         // Handle backbutton event
-        alert('backbutton');
+        
+        if (appNavigator.pages.length > 1) {
+            event.preventDefault();
+            appNavigator.popPage();
+        } else {
+            ons.notification.confirm({
+                message: '종료하시겠습니까?',
+                buttonLabels: ['취소', '확인'],
+                callback: function(answer) {
+                    if (answer == 1)
+                        navigator.app.exitApp();
+                }
+            });
+        }
+
     }, false);
 });
