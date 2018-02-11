@@ -1,6 +1,8 @@
 // App logic.
 window.myApp = {};
 
+var isShowAppExitMessage = false;
+
 document.addEventListener('init', function(event) {
     var page = event.target;
 	console.log('init', page.id);
@@ -24,7 +26,6 @@ document.addEventListener('init', function(event) {
 });
 
 ons.ready(function() {
-    console.log("Onsen UI is ready!");
     var appNavigator = document.querySelector('#myNavigator');
     ons.disableDeviceBackButtonHandler();
             
@@ -36,15 +37,20 @@ ons.ready(function() {
             event.preventDefault();
             appNavigator.popPage();
         } else {
-            ons.notification.confirm({
-                message: '종료하시겠습니까?',
-                buttonLabels: ['취소', '확인'],
-                callback: function(answer) {
-                    if (answer == 1)
-                        navigator.app.exitApp();
-                }
-            });
+            if (!isShowAppExitMessage) {
+                isShowAppExitMessage = true;
+                ons.notification.confirm({
+                    message: '종료하시겠습니까?',
+                    buttonLabels: ['취소', '확인'],
+                    callback: function(answer) {
+                        if (answer == 0) {
+                            isShowAppExitMessage = false;
+                        } else if (answer == 1) {
+                            navigator.app.exitApp();
+                        }
+                    }
+                });
+            }
         }
-
     }, false);
 });
