@@ -41,13 +41,13 @@ ons-splitter-side[side="left"][animation="overlay"] {
 
 #tabbarPage .list-item {
   min-height: 0;
-  height: 132px;
+  height: 200px;
   background-color: white;
   margin: 1px 0 -1px 0;
 }
 
 #tabbarPage .list-item--material {
-  height: 132px;
+  height: 200px;
 }
 
 .list-title {

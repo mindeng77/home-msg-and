@@ -1,7 +1,8 @@
 // App logic.
 window.myApp = {};
 
-var isShowAppExitMessage = false;
+
+var apiUrl = 'http://13.125.57.15';
 
 document.addEventListener('init', function(event) {
     var page = event.target;
@@ -26,31 +27,11 @@ document.addEventListener('init', function(event) {
 });
 
 ons.ready(function() {
-    var appNavigator = document.querySelector('#myNavigator');
-    ons.disableDeviceBackButtonHandler();
+    
+    myApp.navigator.init();
             
     // Use Cordova handler
     document.addEventListener('backbutton', function(event) {
-        // Handle backbutton event
-        
-        if (appNavigator.pages.length > 1) {
-            event.preventDefault();
-            appNavigator.popPage();
-        } else {
-            if (!isShowAppExitMessage) {
-                isShowAppExitMessage = true;
-                ons.notification.confirm({
-                    message: '종료하시겠습니까?',
-                    buttonLabels: ['취소', '확인'],
-                    callback: function(answer) {
-                        if (answer == 0) {
-                            isShowAppExitMessage = false;
-                        } else if (answer == 1) {
-                            navigator.app.exitApp();
-                        }
-                    }
-                });
-            }
-        }
+        myApp.navigator.back(event);
     }, false);
 });

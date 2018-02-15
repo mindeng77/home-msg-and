@@ -19,30 +19,51 @@ myApp.services = {
 
         // Creates a new task and attaches it to the pending task list.
         create: function(data) {
+            /*
             if(data.contents !== null && typeof data.contents === 'object'){
             } else {
                 data.contents = JSON.parse(data.contents);
             }
+            */
             //console.log(data);
             //calculate distance..
             distance = 200;
 
+            var employee_html = "";
+            /*
+            var employee_html = "<div>";
+            //관리사만큼 프로필사진...
+            for(var i=0;i<3;i++){
+                employee_html +="<img style='width:70px; height:70px;background:#888; margin-left:10px;'/>";
+            }
+            employee_html += "</div>";
+            */
             // Task item template.
             var taskItem = ons.createElement(
                 '<ons-list-item class="center" tappable category="' + myApp.services.categories.parseId(data.category)+ '">' +
                     '<ons-card style="width:100%;padding:5px;">'+
-                        '<img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 25%;float:left;height:90px;object-fit:cover;">'+
+                        '<img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 25%;float:left;height:158px;object-fit:cover;">'+
                         '<div class="content" style="padding-left:10px;margin-left:25%;width:75%;">'+
-                        '<div class="title" style="font-size:12pt;color:#000;font-weight:bold;height:60px;">'+data.shop_name+'<img style="background:#888;float:right;height:50px;width:50px;"/></div>'+
-                        '<div style="height:30px;line-height:30px;">'+
-                            '<div style="display:inline;">'+
-                                '<span style="font-size:9pt;color:#888;text-decoration:line-through;">'+(data.contents.price)+'원</span>'+
-                                '<span style="margin-left:5px;margin-right:5px;">=&gt;</span>'+
-                                '<span style="font-size:10pt;font-weight:bold;color:#ff8800;">'+(data.contents.price-data.contents.discount)+'원</span>' +
+                            '<div>'+
+                                '<img style="background:#888;float:right;height:60px;width:60px;margin-top:20px;margin-right:10px;"/>'+
+                                '<div class="title" style="font-size:12pt;color:#000;font-weight:bold;height:30px;line-height:30px;margin-right:80px;">'+data.shop_name+'</div>'+
+                                '<div class="detail" style="font-size:11pt;color:#000;height:70px;margin-right:80px;">'+
+                                    '<div class="profile_price" style="float:left;height:50px;margin-top:10px;margin-bottom:10px;width:150px;overflow:hidden;">'+data.profile+'<br>'+data.price+'</div>'+
+                                    '<div class="employee" style="margin-left:150px;background:#ff0000;overflow:hidden;">'+employee_html+'</div>'+
+                                '</div>'+
                             '</div>'+
-                            '<div style="display:inline;margin-left:40px;">'+
-                                '<img style="width:30px;height:30px;background:#888;" />'+
-                                '<span style="height:30px;font-size:10pt;color:#000;margin-left:5px;">'+(distance/100).toFixed(1)+'km</span>'+
+                            '<div style="height:58px;line-height:58px;">'+
+                                '<div style="display:inline;">'+
+                                    //'<span style="font-size:9pt;color:#888;text-decoration:line-through;">'+(data.contents.price)+'원</span>'+
+                                    //'<span style="margin-left:5px;margin-right:5px;">=&gt;</span>'+
+                                    //'<span style="font-size:10pt;font-weight:bold;color:#ff8800;">'+(data.contents.price-data.contents.discount)+'원</span>' +
+                                    '<span style="font-size:10pt;font-weight:bold;color:#ff8800;">'+(data.locations)+'</span>' +
+                                '</div>'+
+                                '<div style="display:inline;margin-left:40px;">'+
+                                    '<img style="width:30px;height:30px;background:#888;" />'+
+                                    //'<span style="height:30px;font-size:10pt;color:#000;margin-left:5px;">'+(distance/100).toFixed(1)+'km</span>'+
+                                    '<span style="height:30px;font-size:10pt;color:#000;margin-left:5px;">'+3+'km</span>'+
+                                '</div>'+
                             '</div>'+
                         '</div>'+
                     '</ons-card>'+
@@ -245,26 +266,32 @@ myApp.services = {
     // Initial Data Service //
     ////////////////////////
     fixtures: [{
-        shop_name: '업체 1',
-        contents: '{"price":"35000","discount":"3000"}',
-        phone_no: '01012345678',
-        point: 'x,y',
-        profile: '[]',
-        image_id: ''
+        shop_id: '1',
+        shop_name: '업체1',
+        price: '35000',
+        phone_no: '05512345678',
+        point: '',
+        profile: '좋은 업체입니다.',
+        locations:'등촌동/가양동',
+        employee: '[]'
     }, {
-        shop_name: '업체 2',
-        contents: '{"price":"35000","discount":"3000"}',
-        phone_no: '01012345678',
-        point: 'x,y',
-        profile: '[]',
-        image_id: ''
+        shop_id: '1',
+        shop_name: '업체2',
+        price: '35000',
+        phone_no: '05512345678',
+        point: '',
+        profile: '좋은 업체입니다.',
+        locations:'강서구/은평구',
+        employee: '[]'
     }, {
-        shop_name: '업체 3',
-        contents: '{"price":"35000","discount":"3000"}',
-        phone_no: '01012345678',
-        point: 'x,y',
-        profile: '[]',
-        image_id: ''
+        shop_id: '1',
+        shop_name: '업체3',
+        price: '35000',
+        phone_no: '05512345678',
+        point: '',
+        profile: '아주 좋은 업체입니다.',
+        locations:'부산',
+        employee: '[]'
     }],
 
     //////////////////////
@@ -274,7 +301,9 @@ myApp.services = {
         isEmailDuplCheck: false,
         oldEmail: '',	// 이미 체크한 이메일을 다시 체크하지 않기 위한 변수
         joinInit: function(page) {
-            HMUtil.sendForm($(page).find('#join_form'), {
+            var $form = $(page).find('#join_form');
+            $form.attr('action', 'http://13.125.57.15/join');
+            HMUtil.sendForm($form, {
                 beforeSubmit: function(formData, jqForm, options) {
                     if (!myApp.services.user.isEmailDuplCheck) {
                         ons.notification.alert({
@@ -301,12 +330,23 @@ myApp.services = {
                     }
                     return true;
                 },
-                redirect : contextRoot + 'mobile'
+                success: function(data) {
+                    if (data.message) {
+                        ons.notification.alert({
+                            title: '',
+                            message: data.message,
+                            buttonLabels: '확인',
+                            callback: function() {
+                                myApp.navigator.home();
+                            }
+                        });
+                    }
+                }
             });
         },
         emailDuplCheck: function(email) {
             HMUtil.send({
-                url: contextRoot + 'emailDuplCheck',
+                url: apiUrl + '/emailDuplCheck',
                 data: {
                     email: email
                 },
@@ -326,7 +366,9 @@ myApp.services = {
             });
         },
         loginInit: function(page) {
-            HMUtil.sendForm($(page).find('#login_form'), {
+            var $form = $(page).find('#login_form');
+            $form.attr('action', apiUrl + '/perform_login');
+            HMUtil.sendForm($form, {
                 beforeSubmit: function(formData, jqForm, options) {
                     return true;
                 },
@@ -337,7 +379,7 @@ myApp.services = {
                             message: data.message,
                             buttonLabels: '확인',
                             callback: function() {
-                                location.href = contextRoot + 'mobile';
+                                myApp.navigator.pop();
                             }
                         });
                     }

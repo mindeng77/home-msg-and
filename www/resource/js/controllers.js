@@ -162,10 +162,13 @@ myApp.controllers = {
 	shopDetailPage : function(page) {
 		// Get the element passed as argument to pushPage.
 		var element = page.data.element;
-
-		// Fill the view with the stored data.
-		// page.querySelector('#title').html(element.data.shop_name);
+        
+        // Fill the view with the stored data.
+    	// page.querySelector('#title').html(element.data.shop_name);
 		$('#title').html(element.data.shop_name);
+		$('#price').html(element.data.price);
+		$('#profile').html(element.data.profile);
+
 
 		console.log(element.data);
 
