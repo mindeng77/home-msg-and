@@ -19,15 +19,30 @@ myApp.services = {
 
         // Creates a new task and attaches it to the pending task list.
         create: function(data) {
-            console.log(data);
+            /*
+            if(data.contents !== null && typeof data.contents === 'object'){
+            } else {
+                data.contents = JSON.parse(data.contents);
+            }
+            */
+            //console.log(data);
+            //calculate distance..
+            distance = 200;
+
             var employee_html = "";
+            /*
+            var employee_html = "<div>";
+            //관리사만큼 프로필사진...
+            for(var i=0;i<3;i++){
+                employee_html +="<img style='width:70px; height:70px;background:#888; margin-left:10px;'/>";
+            }
+            employee_html += "</div>";
+            */
             // Task item template.
             var taskItem = ons.createElement(
-                // myabe category is undefined. it's okay...
                 '<ons-list-item class="center" tappable category="' + myApp.services.categories.parseId(data.category)+ '">' +
-                //'<ons-list-item class="center" tappable category="''">' +
                     '<ons-card style="width:100%;padding:5px;">'+
-                        '<img style="width: 25%;float:left;height:158px;object-fit:cover;" src="'+apiUrl+"/mobile/image/"+data.image.image_id+'">'+
+                        '<img style="width: 25%;float:left;height:158px;object-fit:cover;" src="resource/img/shop.jpg">'+
                         '<div class="content" style="padding-left:10px;margin-left:25%;width:75%;">'+
                             '<div>'+
                                 '<img style="background:#888;float:right;height:60px;width:60px;margin-top:20px;margin-right:10px;" src="resource/img/phone.jpeg"/>'+
@@ -59,22 +74,22 @@ myApp.services = {
             // Store data within the element.
             taskItem.data = data;
 
-              /*
-              // Add 'completion' functionality when the checkbox changes.
-              taskItem.data.onCheckboxChange = function(event) {
-                myApp.services.animators.swipe(taskItem, function() {
-                  var listId = (taskItem.parentElement.id === 'pending-list' && event.target.checked) ? '#completed-list' : '#pending-list';
-                  document.querySelector(listId).appendChild(taskItem);
-                });
-              };
-        
-              taskItem.addEventListener('change', taskItem.data.onCheckboxChange);
-        
-              // Add button functionality to remove a task.
-              taskItem.querySelector('.right').onclick = function() {
-                myApp.services.tasks.remove(taskItem);
-              };
-              */
+      /*
+      // Add 'completion' functionality when the checkbox changes.
+      taskItem.data.onCheckboxChange = function(event) {
+        myApp.services.animators.swipe(taskItem, function() {
+          var listId = (taskItem.parentElement.id === 'pending-list' && event.target.checked) ? '#completed-list' : '#pending-list';
+          document.querySelector(listId).appendChild(taskItem);
+        });
+      };
+
+      taskItem.addEventListener('change', taskItem.data.onCheckboxChange);
+
+      // Add button functionality to remove a task.
+      taskItem.querySelector('.right').onclick = function() {
+        myApp.services.tasks.remove(taskItem);
+      };
+      */
             // Add functionality to push 'details_task.html' page with the current element as a parameter.
             taskItem.querySelector('.center').onclick = function() {
                 document.querySelector('#myNavigator').pushPage('shop/shop_detail.html', {
@@ -250,7 +265,7 @@ myApp.services = {
     ////////////////////////
     // Initial Data Service //
     ////////////////////////
-    
+    /*
     fixtures: [{
         shop_id: '1',
         shop_name: '업체1',
@@ -279,6 +294,7 @@ myApp.services = {
         locations:'부산',
         employee: '[]'
     }],
+    */
 
     //////////////////////
     // User Service

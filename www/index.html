@@ -27,25 +27,28 @@
     </ons-navigator>
     
     <template id="splitter.html">
-        <ons-page>
+        <ons-page id="">
             <ons-splitter id="mySplitter">
-            <ons-splitter-side page="menu.html" swipeable width="250px" collapse swipe-target-width="50px"></ons-splitter-side>
-            <ons-splitter-content page="tabbar.html">
-            </ons-splitter-content>
-        </ons-splitter>
+                <ons-splitter-side page="menu.html" swipeable width="250px" collapse swipe-target-width="50px"></ons-splitter-side>
+                <ons-splitter-content page="tabbar.html"></ons-splitter-content>
+            </ons-splitter>
         </ons-page>
     </template>
     
     <template id="tabbar.html">
         <ons-page id="tabbarPage">
-            <ons-toolbar style="background:#bb2222">
+            <ons-toolbar style="background:#eeeeee">
                 <div class="left">
                     <!-- Toolbar-button with different icons depending on the platform. -->
                     <ons-toolbar-button component="button/menu">
-                        <ons-icon icon="ion-navicon, material:md-menu" size="32px, material:24px"></ons-icon>
+                        <ons-icon icon="ion-navicon, material:md-menu" size="32px, material:24px" style="color:#ee4499;"></ons-icon>
                     </ons-toolbar-button>
                 </div>
-                <div class="center">Home Msg</div>
+                <div class="center" >
+                    <img src="resource/img/homemsg_icon_small.png" style='margin-top:-5px;padding:5px;height:44px;width:44px;'>
+                    <span style='line-height:44px;color:#ee4499;'>HOME MSG</span>
+                        
+                    </div>
                 <!--
                     <div class="right">
                     <ons-if platform="ios other">
@@ -65,9 +68,9 @@
 
             <!-- Auto-positioned Tabbar: top on Android, bottom on iOS/other. -->
             <ons-tabbar id="myTabbar" position="auto">
-                <ons-tab style="background:#bb2222" page="pending_tasks.html" label="내주변 업체" active></ons-tab>
-                <ons-tab style="background:#bb2222" page="completed_tasks.html" label="내주변 관리사"></ons-tab>
-                <ons-tab id="tab_like_employee" style="background:#bb2222" page="user/like_employee.html" label="찜한 관리사"></ons-tab>
+                <ons-tab style="background:#ee4499;" page="pending_tasks.html" label="내주변 Shop" active></ons-tab>
+                <ons-tab style="background:#ee4499;" page="completed_tasks.html" label="내주변 관리사"></ons-tab>
+                <ons-tab id="tab_like_employee" style="background:#ee4499;" page="user/like_employee.html" label="찜한 관리사"></ons-tab>
             </ons-tabbar>
         </ons-page>
     </template>

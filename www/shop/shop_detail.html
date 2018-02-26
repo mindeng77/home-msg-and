@@ -1,20 +1,68 @@
 <ons-page id="shopDetailPage">
-	<ons-toolbar style='background:#bb2222'>
-    	<div class="left">
-			<ons-back-button>Back</ons-back-button>
+	<ons-toolbar style='background:#ee4499;'>
+    	<div class="left" >
+			<ons-back-button >Back</ons-back-button>
 		</div>
 		<div class="center" id='title'></div>
 	</ons-toolbar>
 	<div>
 		<div>
-			<img style='width:100%;height:200px;background:#888;'/>
+			<img style='width:100%;height:200px;background:#888;object-fit:cover;' src="resource/img/shop.jpg"/>
 		</div>
 
 	</div>
-	<div>
-		<span id='profile'></span>
+	<div style='padding:20px;'>
+        <div style='font-weight:bold;font-size:11pt;color:#888;border-bottom:1px solid #eee;'>
+            <img style='width:20px;height:20px;'src="resource/img/circle.png" />샵 소개</div>
+		<div style='font-weight:bold;font-size:11pt;color:#000;margin-top:5px;margin-left:25px;' id='profile'></div>
 	</div>
-	<div>
-		<span id='price'></span>
+	<div style='padding-left:20px;padding-right:20px;padding-bottom:20px;'>
+        <div style='font-weight:bold;font-size:11pt;color:#888;border-bottom:1px solid #eee;'>
+            <img style='width:20px;height:20px;'src="resource/img/circle.png" />가격 정보</div>
+    	<div style='font-weight:bold;font-size:11pt;color:#000;margin-top:5px;margin-left:25px;' id='price'></div>
 	</div>
+    <div style='padding-left:20px;padding-right:20px;padding-bottom:20px;'>
+        <div style='font-weight:bold;font-size:11pt;color:#888;border-bottom:1px solid #eee;'>
+            <img style='width:20px;height:20px;'src="resource/img/circle.png" />영업 가능 지역</div>
+        <div style="display:inline;line-height:30px;">
+            <span style="margin-left:25px;margin-top:5px;font-size:11pt;font-weight:bold;color:#ff8800;" id='locations'></span>
+        </div>
+        <div style="display:inline;margin-left:40px;">
+            <img style="width:25px;height:25px;background:#888;" src="resource/img/location.jpg"/>
+            <span style="height:30px;font-size:10pt;color:#000;margin-left:5px;">3km</span>
+        </div>
+	</div>
+    <div style='padding-left:20px;padding-right:20px;padding-bottom:100px;'>
+        <div style='font-weight:bold;font-size:11pt;color:#888;border-bottom:1px solid #eee;'>
+            <img style='width:20px;height:20px;'src="resource/img/circle.png" />전문 관리사</div>
+            <div id='emp1' style='height:100px;margin-top:10px;border:1px solid #ccc;border-radius:5px;'>
+                <img src="resource/img/wo.png" style='height:80px;width:80px;margin-top:10px;'/>
+                <div style='
+                    margin-left: 15px;margin-right: 10px;margin-top: 20px;float: right;
+                    width: calc(100% - 115px);height: 60px;overflow:hidden;color:#000;font-size:11pt;'>
+                    -<br>-<br>-
+                </div>
+            </div>
+            <div id='emp2' style='height:100px;margin-top:10px;border:1px solid #ccc;border-radius:5px;'>
+                <img src="resource/img/wo.png" style='height:80px;width:80px;margin-top:10px;'/>
+                <div style='
+                    margin-left: 15px;margin-right: 10px;margin-top: 20px;float: right;
+                    width: calc(100% - 115px);height: 60px;overflow:hidden;color:#000;font-size:11pt;'>
+                    -<br>-<br>-
+                </div>
+            </div>
+            <div id='emp3' style='height:100px;margin-top:10px;border:1px solid #ccc;border-radius:5px;'>
+                <img src="resource/img/wo.png" style='height:80px;width:80px;margin-top:10px;'/>
+                <div style='
+                    margin-left: 15px;margin-right: 10px;margin-top: 20px;float: right;
+                    width: calc(100% - 115px);height: 60px;overflow:hidden;color:#000;font-size:11pt;'>
+                    -<br>-<br>-
+                </div>
+            </div>
+	</div>
+    
+    <div style='position:fixed;bottom:5px;right:15px;'>
+        <img id='call_bt' style='height:60px;width:60px;' src='resource/img/phone_cir.png'></div>
+    </div>
+    
 </ons-page>

@@ -58,16 +58,17 @@ myApp.controllers = {
 					animation : 'slide'
 				});
 			} else if ($(this).attr('id') == 'menu_logout') {
-				location.href = '/logout';
+                ons.notification.confirm('로그아웃 하시겠습니까?').then(function(index){
+                    if (index == 1) {
+                        ons.notification.toast({
+                            message: '로그아웃 되었습니다.',
+                            timeout: 2000
+                        });
+                        myApp.user.logoutProcess();
+                    }
+                });
 			}
 		});
-		if (myApp.user.isLogin()) {
-			$(page).find('#menu_login').hide();
-			$(page).find('#menu_logout').show();
-
-			if (myApp.user.loginType == '1')
-				$(page).find('#menu_reset_password').show();
-		}
 	},
 
 	// //////////////////////////
@@ -168,7 +169,7 @@ myApp.controllers = {
 		$('#title').html(element.data.shop_name);
 		$('#price').html(element.data.price);
 		$('#profile').html(element.data.profile);
-
+        $('#locations').html(element.data.locations);
 
 		console.log(element.data);
 

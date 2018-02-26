@@ -10,6 +10,7 @@ HMUtil.send = function(opts) {
 		data : (typeof (opts.method) == 'undefined') ? $.param(opts.data) : JSON.stringify(opts.data),
 		beforeSend : function(request) {
 			request.setRequestHeader('isAjax', true);
+            request.setRequestHeader('userId', myApp.user.getUserId());
 		},
 		success : function(data) {
         	console.log(data);
@@ -71,8 +72,9 @@ HMUtil.send = function(opts) {
 HMUtil.sendForm = function(obj, opts) {
 
     obj.ajaxForm({
-    	beforeSend: function(xhr) {
-    		xhr.setRequestHeader('accept', 'application/json');
+    	beforeSend: function(request) {
+    		request.setRequestHeader('accept', 'application/json');
+            request.setRequestHeader('userId', myApp.user.getUserId());
     	},
     	beforeSubmit: function(formData, jqForm, options) {
     		if(typeof(opts.beforeSubmit)=='function')

@@ -1,14 +1,14 @@
 // App logic.
 window.myApp = {};
 
+ons.platform.select('android');
 
 var apiUrl = 'http://13.125.57.15';
 
 document.addEventListener('init', function(event) {
     var page = event.target;
-	console.log('init', page.id);
-
-	// Each page calls its own initialization controller.
+    
+    // Each page calls its own initialization controller.
 	if (myApp.controllers.hasOwnProperty(page.id)) {
 		myApp.controllers[page.id](page);
 	}
@@ -19,9 +19,18 @@ document.addEventListener('init', function(event) {
 		if (document.querySelector('#menuPage')
 				&& document.querySelector('#pendingTasksPage')
 				&& !document.querySelector('#pendingTasksPage ons-list-item')) {
-			myApp.services.fixtures.forEach(function(data) {
-				myApp.services.tasks.create(data);
-			});
+                            
+            HMUtil.send({
+                url: apiUrl + '/mobile/shop/list',
+                data: {},
+                success: function(result) {
+                    shops = result.data.shopList;
+                    shops.forEach(function(data) {
+    		            myApp.services.tasks.create(data);
+			        });
+                }
+            });        
+			
 		}
 	}
 });
@@ -29,9 +38,12 @@ document.addEventListener('init', function(event) {
 ons.ready(function() {
     
     myApp.navigator.init();
+    myApp.user.loginProcess();
             
-    // Use Cordova handler
+    // android back button event
     document.addEventListener('backbutton', function(event) {
         myApp.navigator.back(event);
     }, false);
+    
+    
 });
