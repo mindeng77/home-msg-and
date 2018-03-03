@@ -19,8 +19,9 @@ myApp.services = {
 
         // Creates a new task and attaches it to the pending task list.
         create: function(data) {
-            console.log(data);
+
             var employee_html = "";
+            
             // Task item template.
             var taskItem = ons.createElement(
                 // myabe category is undefined. it's okay...
@@ -100,6 +101,7 @@ myApp.services = {
 
         // Modifies the inner data and current view of an existing task.
         update: function(taskItem, data) {
+            
             if (data.title !== taskItem.data.title) {
                 // Update title view.
                 taskItem.querySelector('.center').innerHTML = data.title;
@@ -415,6 +417,56 @@ myApp.services = {
                         });
                     }
                 }
+            });
+        }
+    },
+    employee : {
+        // 내주변 관리사 목록 조회
+        loadMyAreaEmployeeList: function(page) {
+            navigator.geolocation.getCurrentPosition(function(position){
+                HMUtil.send({
+                    url: apiUrl + '/mobile/employee/list/range',
+                    data: {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
+                        range: 3,
+                        page: 1
+                    },
+                    success: function(result) {
+                        myApp.services.employee.createList(result.data.employeeList);
+                    }
+                });
+            }, function(message) {
+                alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+            }, {
+                frequency: 5000,
+                timeout: 6000
+            });
+        },
+        // 관리사 목록 html 생성
+        createList: function(employeeList) {
+            
+            var employeeElement = document.querySelector('#my-area-employee-list');
+            
+            employeeList.forEach(function(employee) {
+            
+                // item template.
+                var item = ons.createElement(
+                    '<ons-list-item class="center" tappable>' +
+                        '<ons-card style="width:100%">'+
+                            '<img style="width: 25%;float:left;height:100px;object-fit:cover;" src="' + apiUrl + "/mobile/image/" + employee.image.image_id+'">' +
+                            '<div class="content" style="padding-left:10px;margin-left:25%;width:75%;">' +
+                                '<p>' + employee.employee_name + '</p>' +
+                                '<p>' + employee.profile + '</p>' +
+                            '</div>' +
+                        '</ons-card>' +
+                    '</ons-list-item>'
+                );
+                
+                // Store data within the element.
+                item.data = employee;
+
+                employeeElement.insertBefore(item, null);
             });
         }
     }

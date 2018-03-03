@@ -40,8 +40,8 @@ HMUtil.send = function(opts) {
                 }
             }
         },
-        error : function(data){
-        	console.log(data);
+        error : function(data, textStatus, errorThrown ){
+
             if(typeof(opts.error)=='function')
                 opts.error(data);
             else {

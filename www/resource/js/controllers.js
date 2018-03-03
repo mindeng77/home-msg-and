@@ -163,6 +163,15 @@ myApp.controllers = {
 	shopDetailPage : function(page) {
 		// Get the element passed as argument to pushPage.
 		var element = page.data.element;
+        console.log(element.data);
+        
+        var show_pic = false;
+        if(myApp.user.isLogin()){
+            if(myApp.user.getUserType()!=3)
+            show_pic = true;
+        }
+        console.log("show_pic: "+show_pic);
+        
         
         // Fill the view with the stored data.
     	// page.querySelector('#title').html(element.data.shop_name);
@@ -170,9 +179,46 @@ myApp.controllers = {
 		$('#price').html(element.data.price);
 		$('#profile').html(element.data.profile);
         $('#locations').html(element.data.locations);
-
-		console.log(element.data);
-
+        
+        var html = "";
+        for(var i=0;i<element.data.employee.length;i++){
+            var emp = element.data.employee[i];
+            if(i==0){
+                html+= "<div style='font-weight:bold;font-size:11pt;color:#888;border-bottom:1px solid #eee;'>";
+                html+= "<img style='width:20px;height:20px;'src=\"resource/img/circle.png\" />전문 관리사";
+                html+= "</div>";
+            }
+            var emp_id = emp.employee_id;
+            var img_src = "resource/img/wo.png";
+            var con = emp.employee_name+"<br>"+emp.profile;
+            if(show_pic){
+                img_src = apiUrl+"/mobile/image/"+emp.image.image_id;
+            }
+            
+            html += "<div id='emp1_"+emp_id+"' style='height:100px;margin-top:10px;border:1px solid #ccc;border-radius:5px;'>";
+            html += "<img src=\""+img_src+"\" style='margin-left:5px;height:80px;width:80px;margin-top:10px;'/>";
+            html += "<div style='";
+            html += "margin-left: 15px;margin-right: 10px;margin-top: 20px;float: right;";
+            html += "width: calc(100% - 115px);height: 60px;overflow:hidden;color:#000;font-size:11pt;'>";
+            html += con;
+            html += "</div>";
+            html += "</div>";
+            html += "";
+        }
+        $('#employee_div').html(html);
+		
+        
+        if(myApp.user.isLogin()){
+            //최근업체 설정...
+            HMUtil.send({
+                url: apiUrl + '/mobile/shop/'+element.data.shop_id,
+                data: {},
+                success: function(result) {
+                    console.log("save recent shop.");
+                    console.log(result);
+                }
+            });        
+        }
 	},
 
 	// ////////////////////////////
@@ -227,5 +273,10 @@ myApp.controllers = {
 	// 찜한 관리사
 	likeEmployeePage : function(page) {
 
-	}
+	},
+    
+    // 내주변 관리사
+    myAreaEmployeesPage : function(page) {
+        myApp.services.employee.loadMyAreaEmployeeList(1);
+    }
 };

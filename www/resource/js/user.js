@@ -22,6 +22,10 @@ myApp.user = {
         window.localStorage.setItem('email', email);
         window.localStorage.setItem('loginType', loginType);
         window.localStorage.setItem('userType', userType);
+        
+        //userType
+        //1 admin, 2 shop_manager, 
+        //3 user_without_auth, 4 user_with_auth
     },
     // 로그인 처리
 	loginProcess : function() {
